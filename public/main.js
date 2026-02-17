@@ -52,3 +52,21 @@ document.getElementById('btnLimpiar').addEventListener('click', () => {
     document.getElementById('estatus').value = '';
     document.getElementById('estatus').className = '';
 });
+const btnCalcular = document.getElementById('btnCalcular');
+// ... obtener tus inputs ...
+
+btnCalcular.addEventListener('click', (e) => {
+    e.preventDefault(); // Para que no recargue la página
+    
+    // 1. Obtienes los números aquí
+    const u1 = parseFloat(document.getElementById('unidad1').value);
+    const u2 = parseFloat(document.getElementById('unidad2').value);
+    const u3 = parseFloat(document.getElementById('unidad3').value);
+
+    // 2. Haces la suma y división AQUÍ (NO en app.js)
+    const promedio = (u1 + u2 + u3) / 3;
+    const estatus = promedio >= 6 ? "Aprobado" : "Reprobado";
+
+    // 3. Muestras el resultado
+    document.getElementById('resultado').innerText = promedio.toFixed(2);
+});
