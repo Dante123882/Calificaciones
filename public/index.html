@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Promedio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Calcular Promedio</h2>
+        <div class="input-group">
+            <label>Nombre</label>
+            <input id="nombre">
+        </div>
+        <div class="input-group">
+            <label>Unidad 1:</label>
+            <input type="number" id="unidad1" placeholder="0 - 10">
+        </div>
+        <div class="input-group">
+            <label>Unidad 2:</label>
+            <input type="number" id="unidad2" placeholder="0 - 10">
+        </div>
+        <div class="input-group">
+            <label>Unidad 3:</label>
+            <input type="number" id="unidad3" placeholder="0 - 10">
+        </div>
+        <button id="btnCalcular">Calcular</button>
+        <button id="btnLimpiar" class="outline">Limpiar</button>
+
+        <hr>
+
+        <div class="result-group">
+            <label>Promedio Final:</label>
+            <input type="text" id="promedio" readonly>
+        </div>
+        
+        <div class="result-group">
+            <label>Estatus:</label>
+            <input type="text" id="estatus" readonly>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
