@@ -1,73 +1,165 @@
+/* Importamos la fuente Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
+:root {
+    --bg-gradient: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --neon-blue: #00f2ff;
+    --neon-purple: #bc13fe;
+    --neon-green: #00ff9d; /* Nuevo para Aprobado */
+    --neon-red: #ff0055;   /* Nuevo para Reprobado */
+    --text-color: #ffffff;
+    --input-bg: rgba(0, 0, 0, 0.3);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
-    font-family: sans-serif;
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg-gradient);
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background-color: #4748494f;
-    margin: 0;
+    color: var(--text-color);
 }
 
+/* --- Tarjeta de Vidrio (Glassmorphism) --- */
 .container {
-    background: rgb(255, 255, 255);
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    width: 300px;
+    background: var(--card-bg);
+    padding: 2.5rem;
+    border-radius: 20px;
+    width: 380px; /* Un poco más ancho para los inputs */
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 20px rgba(0, 242, 255, 0.15);
+    animation: flotar 3s ease-in-out infinite alternate;
 }
 
-h2 { text-align: center; color: #333; }
+@keyframes flotar {
+    from { transform: translateY(0); }
+    to { transform: translateY(-5px); }
+}
 
+h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    /* Texto Gradiente */
+    background: linear-gradient(to right, var(--neon-blue), var(--neon-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* --- Inputs --- */
 .input-group, .result-group {
-    margin-bottom: 10px;
+    margin-bottom: 1rem;
 }
 
 label {
     display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    font-size: 0.9rem;
+    margin-bottom: 0.4rem;
+    font-size: 0.85rem;
+    color: #ccc;
+    letter-spacing: 0.5px;
 }
 
 input {
     width: 100%;
-    padding: 8px;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    padding: 10px;
+    background: var(--input-bg);
+    border: none;
+    border-bottom: 2px solid #555;
+    border-radius: 5px 5px 0 0;
+    color: #fff;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+    transition: all 0.3s ease;
 }
 
+input:focus {
+    border-bottom: 2px solid var(--neon-blue);
+    background: rgba(0, 242, 255, 0.05);
+}
+
+/* Placeholder color */
+::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* --- Botones --- */
 button {
     width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
+    padding: 12px;
+    margin-top: 10px;
     border: none;
-    border-radius: 4px;
+    border-radius: 50px;
     cursor: pointer;
     font-size: 1rem;
-    margin-top: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: transform 0.2s, box-shadow 0.2s;
+    letter-spacing: 1px;
 }
 
-button:hover { background-color: #0056b3; }
-
-button.outline {
-    background-color: transparent;
-    border: 1px solid #ccc;
-    color: #333;
+#btnCalcular {
+    background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+    color: #fff;
+    box-shadow: 0 0 15px rgba(188, 19, 254, 0.4);
 }
 
-/* Clases para el estatus visual */
-.aprobado {
-    background-color: #d4edda;
-    color: #155724;
-    border-color: #c3e6cb;
+#btnCalcular:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 25px rgba(188, 19, 254, 0.7);
+}
+
+#btnLimpiar {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 15px;
+}
+
+#btnLimpiar:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border-color: #fff;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    margin: 25px 0;
+}
+
+/* --- Resultados (Readonly inputs) --- */
+#promedio, #estatus {
+    background: #080808;
+    border: 1px solid #333;
+    text-align: center;
     font-weight: bold;
+    color: var(--neon-blue);
 }
 
-.reprobado {
-    background-color: #f8d7da;
-    color: #721c24;
-    border-color: #f5c6cb;
-    font-weight: bold;
+/* --- Clases para Estatus (Aprobado/Reprobado) --- */
+/* Estas clases se activan con JS */
+
+input.aprobado {
+    color: var(--neon-green) !important;
+    border-bottom: 2px solid var(--neon-green) !important;
+    box-shadow: 0 0 10px rgba(0, 255, 157, 0.2);
+}
+
+input.reprobado {
+    color: var(--neon-red) !important;
+    border-bottom: 2px solid var(--neon-red) !important;
+    box-shadow: 0 0 10px rgba(255, 0, 85, 0.2);
 }
