@@ -5,6 +5,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
+
 app.post('/calcular-promedio', (req, res) => {
 
     const { nombre, unidad1, unidad2, unidad3 } = req.body;
